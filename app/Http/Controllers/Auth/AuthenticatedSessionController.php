@@ -41,7 +41,7 @@ class AuthenticatedSessionController extends Controller
 
         // Redirect based on admin status
         if ($user && boolval($user->is_admin)) {
-            return redirect()->intended(route('dashboard', absolute: false));
+            return redirect()->intended(route('shop.index', absolute: false));
         }
 
         return redirect()->intended(route('user.dashboard', absolute: false));
@@ -60,6 +60,6 @@ class AuthenticatedSessionController extends Controller
         // Optionally clear all session data
         // $request->session()->flush();
 
-        return redirect('/register'); // Redirect after logout
+        return redirect('/'); // Redirect to guest landing page after logout
     }
 }

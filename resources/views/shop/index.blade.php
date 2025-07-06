@@ -11,6 +11,9 @@
 </header>
 
 <div class="container px-4 px-lg-5 mt-4">
+    @if(session('success'))
+        <div class="alert alert-success text-center">{{ session('success') }}</div>
+    @endif
     <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-4 justify-content-center">
         @forelse ($products as $product)
             <div class="col mb-5">
@@ -21,7 +24,10 @@
                     @endif
 
                     <!-- Product image -->
-                    <img class="card-img-top" src="{{ $product->image_url ?? 'https://via.placeholder.com/450x300?text=Product+Image' }}" alt="{{ $product->name }}" style="object-fit: cover; height: 225px;">
+                    <img class="card-img-top"
+                         src="{{ $product->image_url ? asset($product->image_url) : 'https://via.placeholder.com/450x300?text=Product+Image' }}"
+                         alt="{{ $product->name }}"
+                         style="object-fit: cover; height: 225px;">
 
                     <!-- Product details -->
                     <div class="card-body p-4">
@@ -50,6 +56,7 @@
 @endsection
 @push('scripts')
 <script>
+    @auth
     document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', function(e) {
             // Optional: prevent default form submit
@@ -57,5 +64,6 @@
             alert('🛒 Product added to cart!');
         });
     });
+    @endauth
 </script>
 @endpush
