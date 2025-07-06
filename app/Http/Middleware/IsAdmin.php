@@ -15,11 +15,19 @@ class IsAdmin
      */
   public function handle($request, Closure $next)
 {
-    if (auth()->check() && auth()->user()->is_admin) {
-        return $next($request);
+    if (auth()->check()) {
+        \Log::info('IsAdmin middleware', [
+            'user_id' => auth()->user()->id,
+            'is_admin' => auth()->user()->is_admin
+        ]);
+        if (auth()->user()->is_admin) {
+            return $next($request);
+        }
     }
-
-    return redirect('/'); // or abort(403)
+    \Log::info('IsAdmin failed', [
+        'user' => auth()->user()
+    ]);
+    abort(403, 'You are not authorized to access the admin dashboard.');
 }
 
 }

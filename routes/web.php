@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Models\Product;
 
 // 👋 Landing page: shop instead of "welcome"
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
@@ -21,10 +23,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Optional: protected dashboard
+    // Admin-only dashboard
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->middleware(['verified'])->name('dashboard');
+    })->name('dashboard')->middleware(['auth']);
+
+    // User-only dashboard
+   Route::get('/user-dashboard', function () {
+    $products = Product::all(); // fetch all products
+    return view('user-dashboard', compact('products'));
+})->name('user.dashboard')->middleware(['auth']);
 });
 
 // 👤 Auth routes (login, register, logout, etc.)

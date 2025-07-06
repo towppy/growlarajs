@@ -28,6 +28,11 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        // Allow address to be updated
+        if ($request->has('address')) {
+            $request->user()->address = $request->input('address');
+        }
+
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
@@ -55,6 +60,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return Redirect::to('/register'); // Redirect to register page after account deletion
     }
 }

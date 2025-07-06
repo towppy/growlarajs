@@ -24,6 +24,11 @@
         </div>
 
         <div>
+            <x-input-label for="role" :value="__('Role')" />
+            <x-text-input id="role" name="role" type="text" class="mt-1 block w-full bg-gray-100" :value="($user->is_admin ? 'admin' : 'user')" readonly />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
@@ -45,6 +50,12 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
         </div>
 
         <div class="flex items-center gap-4">

@@ -15,7 +15,9 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
-        'role', 
+        'email_verified_at',
+        'is_admin',
+        // 'role', // Remove if not used in your DB
     ];
 
     protected $hidden = [
@@ -23,6 +25,9 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
     ];
 
+    protected $casts = [
+        'is_admin' => 'boolean',
+    ];
    
     public function getJWTIdentifier()
     {
