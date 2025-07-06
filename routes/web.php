@@ -1,44 +1,37 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\Product;
 
-// 👋 Landing page: shop instead of "welcome"
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-
-// 🛍 View a single product (optional)
 Route::get('/product/{id}', [ShopController::class, 'show'])->name('shop.show');
 
-// 🛒 Cart (protected with auth middleware)
 Route::middleware('auth')->group(function () {
+    // Cart
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'view'])->name('cart.view');
-       Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
-
-    // 👤 Profile routes
- Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Admin-only dashboard
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard')->middleware(['auth']);
+    // Dashboard view (used for clicking "Dashboard" in navbar)
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // User-only dashboard
-   Route::get('/user-dashboard', function () {
-    $products = Product::all(); // fetch all products
-    return view('user-dashboard', compact('products'));
-})->name('user.dashboard')->middleware(['auth']);
+    // After-login redirects
+    Route::get('/admin-dashboard', function () {
+        return redirect()->route('dashboard');
+    })->name('admin.dashboard')->middleware('is_admin');
+
+    Route::get('/user-dashboard', function () {
+        return redirect()->route('dashboard');
+    })->name('user.dashboard');
 });
 
-// 👤 Auth routes (login, register, logout, etc.)
 require __DIR__.'/auth.php';
-

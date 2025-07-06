@@ -11,23 +11,25 @@ class IsAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-  public function handle($request, Closure $next)
-{
-    if (auth()->check()) {
-        \Log::info('IsAdmin middleware', [
-            'user_id' => auth()->user()->id,
-            'is_admin' => auth()->user()->is_admin
-        ]);
-        if (auth()->user()->is_admin) {
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (auth()->check() && auth()->user()->is_admin) {
+            \Log::info('✅ IsAdmin passed', [
+                'user_id' => auth()->user()->id,
+                'is_admin' => auth()->user()->is_admin
+            ]);
+
             return $next($request);
         }
-    }
-    \Log::info('IsAdmin failed', [
-        'user' => auth()->user()
-    ]);
-    abort(403, 'You are not authorized to access the admin dashboard.');
-}
 
+        \Log::warning('❌ IsAdmin failed', [
+            'user' => auth()->user()
+        ]);
+
+        abort(403, 'You are not authorized to access the admin dashboard.');
+    }
 }

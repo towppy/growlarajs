@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2025 at 09:13 AM
+-- Generation Time: Jul 06, 2025 at 02:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -119,7 +119,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2025_07_04_230454_add_api_token_to_users_table', 2),
 (5, '2025_07_04_231600_create_products_table', 3),
 (6, '2025_07_04_232016_add_description_to_products_table', 4),
-(7, '2025_07_04_234631_add_image_url_to_products_table', 5);
+(7, '2025_07_04_234631_add_image_url_to_products_table', 5),
+(8, '2025_07_06_092623_add_image_to_users_table', 6);
 
 -- --------------------------------------------------------
 
@@ -188,20 +189,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('0JYiuLeDXmkWeQUMMbOgItfuYQPYcybbDkL4oRW9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTmhqM2RIWFROZGxRblg4MmJlRXhrR3B5eDhCOWtwcDFjcGZkS0RIcCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751779770),
-('8UFbnDWnTmYlZyhV35po01jWiVfYo80g8UkZ6QDO', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSE01ZElSdW80Qk11VFQ0aEZDVGk4RWZORUV1b09JRmJKRTk3RnUzQyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751778868),
-('BpWL2sxjisgmGDyfPGdmDV0LO6FH10ZO8UBLW368', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNVppQjFzbHI1WTNDQTBhc2xJME05bDZ5RHdiZm50bER3YkhET21xNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751778856),
-('goNrEH1rkTM0viLwXOa3LTQOfBMKafW45WLRAoQ9', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQ3V5TVYwWGtISzBlOWYybGNjRTkxRGRXZG5rN3NFeW9UUHhONnFCTiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751779059),
-('iZ85AqhblMAH05dqFznyLWrATy2pSi7t1cATHzhK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSkJ0M3Q3V3NQalVMakpIZVdTSUlqa3dHVHFmTzc2R1hIaENJaVpCZiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751779713),
-('lBEILUQaRuDM10QC9Og6u4J8s8VJgFDnsXlyeX9v', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYnYxdVc5ajNXN3owSGZrYmY1ZE1NZ3pwM0JhNFN4enlpdENFMTN6ViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751777938),
-('MCYfa1liMvqFPJkgC3BTgxcGd27BJArmrorIuZDB', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicHVjem9rSEc3eUxVblBBMUs5SGxINHJJYUl2cmFqTlJIc2x3RnUyTyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751779037),
-('mj75vw61XDEAPw849Of2dSaKOdnDprtFm1eMJefv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZEl4RWZtU2FxWDlEUXNpNldkam5pQU1TRmg2OXFMWnhIaENralN4WCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MjI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC8iO319', 1751780441),
-('QDMZXqcDBiHjMGIYk3yV8CoPP9MHf15r6X851Sbr', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTDZETHhLdEVPdU40enpnNUZzb1hnOWlJbklyU2lKRUhtWjFnNHJYOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751778450),
-('rJ3pgIeysgaMdGgqWJY1CouDKBlJxd8qZa8WDVDL', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiS2dDSDZvVTBpNWxhMlc4NjljcVJqTnVGWmtZUERwM2lTNkxZbXZIcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751779371),
-('RxqukohQprvDrRehrCJafcv9l8K3dJ2Ir4njuFhe', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieW9ZTmE1VWhYZFk5WWVIZWJGSnR0Y0FXNnA4ckltc2kyb1BYU1NTQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MjI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC8iO319', 1751779794),
-('vfcPfEUklLA95BvCEsMP0NUbcuN7Vso6MVpKXGoO', 6, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaFlEUzNiYk80OHZJamQ5bGViMklwSkhEbXU3Q1c2a0c5YUdqSGRSbSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC91c2VyLWRhc2hib2FyZCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjY7fQ==', 1751784959),
-('wY0prHva2SMYiBnt5TxerNmePPrm29pmkeCCiwSj', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiYW04ejU3OVoweWFtTHJlVVhXTGtublhkTk9hV2Y0eTE4ZWVON2wxUiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751777929),
-('YBz4HTEm2zicZQWAw9dnsKHqsiKn0eq6q6Mh1cOP', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoidGljQ1V6b2kzUXR1bXFwUjQ5VWpmNHNVa3FRVmVua1hscHlKR2lHSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO319', 1751778462);
+('zPS8MMCWw8XxzwIWFDDSQheh7AN6s4J1ZK5BQlGe', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibFA3VDhjOW5lVkdYSzlQZjN3d3dyMkY2UkxBNG1XaEZLa1JHZDkyTSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6MjY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJ0Ijt9fQ==', 1751799383);
 
 -- --------------------------------------------------------
 
@@ -213,6 +201,7 @@ CREATE TABLE `users` (
   `id` int(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -227,10 +216,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `api_token`, `is_admin`, `address`) VALUES
-(1, 'Aia Garcia', 'aiagarciaa2205@gmail.com', NULL, '$2y$12$3VIqp6RQTRVKRf5.2HurLuPIljbJ84pBCpF5weiqhGcKS2Brct12m', NULL, '2025-07-04 11:02:16', '2025-07-04 11:02:16', NULL, 0, NULL),
-(4, 'Cristel Kate M. Famini', 'ckfamini.tshs@gmail.com', '2025-07-06 05:29:02', '$2y$12$Z6pPxU60MWudqoiHmhp1DeBLIMKP30gBAvnkdBM8am4xhBucNX1l6', NULL, '2025-07-05 21:28:30', '2025-07-05 21:28:30', NULL, 1, NULL),
-(6, 'Doroughty S. Willows', 'cristel.famini@gmail.com', '2025-07-05 22:10:06', '$2y$12$ahtPqokG5Lmgz8UOg0y.Nuu1o8pokqbXFZTKnMzEtRGs9OZCn7Mne', NULL, '2025-07-05 22:10:06', '2025-07-05 22:10:06', NULL, 0, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `image`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `api_token`, `is_admin`, `address`) VALUES
+(1, 'Aia Garcia', 'aiagarciaa2205@gmail.com', 'user_images/up5hhXzSTgHTz4kPajKJf1Jk8HM5GdO2bBRDqMUL.png', NULL, '$2y$12$3VIqp6RQTRVKRf5.2HurLuPIljbJ84pBCpF5weiqhGcKS2Brct12m', NULL, '2025-07-04 11:02:16', '2025-07-06 02:45:45', NULL, 0, '10B Santol St., North Cignal'),
+(4, 'Cristel Kate M. Famini', 'ckfamini.tshs@gmail.com', NULL, '2025-07-06 05:29:02', '$2y$12$Z6pPxU60MWudqoiHmhp1DeBLIMKP30gBAvnkdBM8am4xhBucNX1l6', NULL, '2025-07-05 21:28:30', '2025-07-05 21:28:30', NULL, 1, NULL),
+(6, 'Doroughty S. Willows', 'cristel.famini@gmail.com', NULL, '2025-07-05 22:10:06', '$2y$12$ahtPqokG5Lmgz8UOg0y.Nuu1o8pokqbXFZTKnMzEtRGs9OZCn7Mne', NULL, '2025-07-05 22:10:06', '2025-07-05 22:10:06', NULL, 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -321,7 +310,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `products`
