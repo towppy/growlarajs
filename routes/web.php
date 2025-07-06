@@ -4,11 +4,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Models\Product;
 
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ShopController::class, 'show'])->name('shop.show');
-
+Route::get('/search/products', [ShopController::class, 'liveSearch'])->name('search.products');
 Route::middleware('auth')->group(function () {
     // Cart
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-dashboard', function () {
         return redirect()->route('dashboard');
     })->name('user.dashboard');
+    
 });
 
 require __DIR__.'/auth.php';

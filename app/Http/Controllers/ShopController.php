@@ -18,4 +18,14 @@ class ShopController extends Controller
         $product = Product::findOrFail($id);
         return view('shop.show', compact('product'));
     }
+   public function liveSearch(Request $request)
+{
+    $query = $request->get('query');
+
+    $products = Product::where('name', 'like', "%{$query}%")
+        ->orWhere('description', 'like', "%{$query}%")
+        ->get();
+
+    return view('partials.product-cards', compact('products'))->render();
+}
 }
