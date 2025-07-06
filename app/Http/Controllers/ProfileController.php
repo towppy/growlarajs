@@ -14,33 +14,39 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+  public function edit(Request $request)
+{
+    return view('profile.edit', [
+        'user' => $request->user(),
+    ]);
+}
 
     /**
      * Update the user's profile information.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'address' => 'nullable|string|max:255',
+        'email' => 'required|email|max:255',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        // Allow address to be updated
-        if ($request->has('address')) {
-            $request->user()->address = $request->input('address');
-        }
+    $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('user_images', 'public');
+        $user->image = $imagePath;
     }
+
+    $user->name = $request->name;
+    $user->address = $request->address;
+    $user->email = $request->email;
+    $user->save();
+
+      return back()->with('status', 'profile-updated');
+}
 
     /**
      * Delete the user's account.
@@ -62,4 +68,5 @@ class ProfileController extends Controller
 
         return Redirect::to('/register'); // Redirect to register page after account deletion
     }
+    
 }
