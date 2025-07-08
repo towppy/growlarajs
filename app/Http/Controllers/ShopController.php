@@ -13,12 +13,20 @@ class ShopController extends Controller
         return view('shop.index', compact('products'));
     }
 
+<<<<<<< HEAD
   public function show($id)
 {
     $product = Product::with('images')->findOrFail($id);
     return view('shop.show', compact('product'));
 }
 
+=======
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('shop.show', compact('product'));
+    }
+>>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
    public function liveSearch(Request $request)
 {
     $query = $request->get('query');
@@ -29,6 +37,7 @@ class ShopController extends Controller
 
     return view('partials.product-cards', compact('products'))->render();
 }
+<<<<<<< HEAD
 
 public function adminIndex()
 {
@@ -38,4 +47,6 @@ public function adminIndex()
     return view('shop.admin', compact('products'));
 }
 
+=======
+>>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
 }
