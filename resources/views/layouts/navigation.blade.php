@@ -16,25 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-<<<<<<< HEAD
-                   @php $isAdmin = auth()->check() && auth()->user()->is_admin; @endphp
-<x-nav-link :href="$isAdmin ? route('shop.admin') : route('shop.index')" :active="request()->routeIs($isAdmin ? 'shop.admin' : 'shop.index')">
-    🛍 Shop
-</x-nav-link>
 
-
-                    @unless($isAdmin)
-    <x-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">
-        🛒 Cart
-        @if(session('cart') && count(session('cart')) > 0)
-            <span class="inline-block bg-red-500 text-white text-xs rounded-full px-2 py-0.5 ml-1">
-                {{ array_sum(session('cart')) }}
-            </span>
-        @endif
-    </x-nav-link>
-@endunless
-
-=======
                     <x-nav-link :href="route('shop.index')" :active="request()->routeIs('shop.index')">
                         🛍 Shop
                     </x-nav-link>
@@ -47,7 +29,7 @@
                             </span>
                         @endif
                     </x-nav-link>
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
+
                 </div>
             </div>
 

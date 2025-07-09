@@ -2,12 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-<<<<<<< HEAD
+
 use App\Http\Controllers\API\TransactionController;
 
 Route::apiResource('transactions', TransactionController::class);
-=======
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
+// Authentication routes
 
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);

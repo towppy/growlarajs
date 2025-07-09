@@ -14,7 +14,10 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ShopController::class, 'show'])->name('shop.show');
-Route::get('/search/products', [ShopController::class, 'liveSearch'])->name('search.products');
+Route::get('/search/products', [App\Http\Controllers\ShopController::class, 'liveSearch'])->name('search.products');
+Route::get('/autocomplete', [App\Http\Controllers\SearchController::class, 'autocomplete'])->name('autocomplete');
+Route::get('/shop/{id}', [App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
+
 Route::middleware('auth')->group(function () {
     // Cart
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');

@@ -7,27 +7,29 @@ use App\Models\Product;
 
 class ShopController extends Controller
 {
+    /**
+     * Display all products on the shop index page.
+     */
     public function index()
     {
         $products = Product::all();
         return view('shop.index', compact('products'));
     }
 
-<<<<<<< HEAD
-  public function show($id)
+    /**
+     * Show a single product with its images (if images relationship is defined).
+     */
+   public function show($id)
 {
-    $product = Product::with('images')->findOrFail($id);
+    $product = Product::findOrFail($id); // ✅ No 'images' relationship
     return view('shop.show', compact('product'));
 }
 
-=======
-    public function show($id)
-    {
-        $product = Product::findOrFail($id);
-        return view('shop.show', compact('product'));
-    }
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
-   public function liveSearch(Request $request)
+
+    /**
+     * Perform live search on product name or description.
+     */
+  public function liveSearch(Request $request)
 {
     $query = $request->get('query');
 
@@ -35,18 +37,15 @@ class ShopController extends Controller
         ->orWhere('description', 'like', "%{$query}%")
         ->get();
 
-    return view('partials.product-cards', compact('products'))->render();
-}
-<<<<<<< HEAD
-
-public function adminIndex()
-{
-    // You can customize this logic
-    $products = \App\Models\Product::all(); // make sure Product model exists
-
-    return view('shop.admin', compact('products'));
+    return view('product-cards', compact('products'))->render();
 }
 
-=======
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
+    /**
+     * Display all products on the admin shop page.
+     */
+    public function adminIndex()
+    {
+        $products = Product::all();
+        return view('shop.admin', compact('products'));
+    }
 }
