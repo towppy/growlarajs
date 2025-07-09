@@ -40,5 +40,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
+        'active' => \App\Http\Middleware\CheckIfUserIsActive::class,
     ];
 }

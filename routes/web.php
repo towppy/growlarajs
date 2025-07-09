@@ -1,72 +1,87 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
-use App\Models\Product;
-
-
-//mga adminside
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes (no login required)
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ShopController::class, 'show'])->name('shop.show');
-Route::get('/search/products', [App\Http\Controllers\ShopController::class, 'liveSearch'])->name('search.products');
-Route::get('/autocomplete', [App\Http\Controllers\SearchController::class, 'autocomplete'])->name('autocomplete');
-Route::get('/shop/{id}', [App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
+Route::get('/search/products', [ShopController::class, 'liveSearch'])->name('search.products');
+Route::get('/autocomplete', [SearchController::class, 'autocomplete'])->name('autocomplete');
 
-Route::middleware('auth')->group(function () {
-    // Cart
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes (login required)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'active'])->group(function () {
+
+    // 🛒 Cart
     Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'view'])->name('cart.view');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
-    // Profile
+    // 👤 User Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Dashboard view (used for clicking "Dashboard" in navbar)
+    // 🧭 Dashboard (shared by users & admins)
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // After-login redirects
-    Route::get('/admin-dashboard', function () {
-        return redirect()->route('dashboard');
-    })->name('admin.dashboard')->middleware('is_admin');
+    // 🚀 Role-based dashboards (redirects only)
+    Route::get('/admin-dashboard', fn () => redirect()->route('dashboard'))
+        ->name('admin.dashboard')->middleware('is_admin');
 
-    Route::get('/user-dashboard', function () {
-        return redirect()->route('dashboard');
-    })->name('user.dashboard');
+    Route::get('/user-dashboard', fn () => redirect()->route('dashboard'))
+        ->name('user.dashboard');
 
+    /*
+    |--------------------------------------------------------------------------
+    | ADMIN Routes (protected by "can:isAdmin" or "is_admin")
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware(['can:isAdmin'])->group(function () {
 
-    //admin shop 
-    Route::get('/admin/shop', [ShopController::class, 'adminIndex'])->name('shop.admin');
+        // 🛍️ Admin Shop Overview
+        Route::get('/admin/shop', [ShopController::class, 'adminIndex'])->name('shop.admin');
 
-   //admin products 
+        // 📦 Product Management
+        Route::get('/admin/prod-management', [ProductController::class, 'index'])->name('prod.management');
+        Route::get('/admin/prod-management/create', [ProductController::class, 'create'])->name('products.create');
+        Route::post('/admin/prod-management/store', [ProductController::class, 'store'])->name('products.store');
+        Route::get('/admin/prod-management/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+        Route::put('/admin/prod-management/{id}', [ProductController::class, 'update'])->name('products.update');
+        Route::delete('/admin/prod-management/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-Route::get('/admin/prod-management', [ProductController::class, 'index'])->name('prod.management');
-Route::get('/admin/prod-management/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/admin/prod-management/store', [ProductController::class, 'store'])->name('products.store');
-Route::get('/admin/prod-management/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/admin/prod-management/{id}', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/admin/prod-management/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+        // 👥 User Management
+        Route::get('/crud-admin/user-management', [UserController::class, 'index'])->name('admin.user-management');
+        Route::put('/crud-admin/user-management/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::get('/crud-admin/user-management/{id}/toggle', [UserController::class, 'toggleStatus'])->name('users.toggle');
 
-  // ADMIN USER MANAGEMENT
-    Route::get('/admin/user-management', [UserController::class, 'index'])->name('user.management');
-    Route::get('/admin/user-management/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/admin/user-management/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::patch('/admin/user-management/{id}/toggle', [UserController::class, 'toggleStatus'])->name('users.toggle');
-
-//Admin transaction management
-Route::get('/admin/transaction-management', function () {
-    return view('crud-admin.transaction-management');
-})->name('transaction.management');
-
-
+        // 💳 Transaction Management
+        Route::get('/admin/transaction-management', function () {
+            return view('crud-admin.transaction-management');
+        })->name('transaction.management');
+    });
 });
 
+/*
+|--------------------------------------------------------------------------
+| Auth Routes (Login, Register, etc.)
+|--------------------------------------------------------------------------
+*/
 require __DIR__.'/auth.php';

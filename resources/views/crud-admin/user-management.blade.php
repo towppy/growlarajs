@@ -3,11 +3,13 @@
 @section('content')
 <div class="container py-4">
     <h2 class="mb-4 text-center text-primary">👥 User Management</h2>
-<div class="mb-3 text-start">
+
+    <div class="mb-3 text-start">
         <a href="{{ route('shop.admin') }}" class="btn btn-outline-secondary">
             🔙 Back to Admin Dashboard
         </a>
     </div>
+
     <table class="table table-bordered table-hover" id="userTable">
         <thead class="table-light">
             <tr>
@@ -24,7 +26,6 @@
                 <form action="{{ route('users.update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
@@ -38,18 +39,29 @@
                             {{ $user->is_active ? 'Active' : 'Disabled' }}
                         </span>
                     </td>
-                    <td>
-
-                 <!--may problema dito sa disable button-->
+                    <td class="d-flex gap-2">
                         <button type="submit" class="btn btn-sm btn-primary">💾 Save</button>
-                        <a href="{{ route('users.toggle', $user->id) }}" class="btn btn-sm {{ $user->is_active ? 'btn-danger' : 'btn-success' }}">
-                            {{ $user->is_active ? 'Disable' : 'Enable' }}
-                        </a>
-                    </td>
                 </form>
+
+                        <!-- Enable/Disable form -->
+                        <form action="{{ route('users.toggle', $user->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-sm {{ $user->is_active ? 'btn-danger' : 'btn-success' }}">
+                                {{ $user->is_active ? 'Disable' : 'Enable' }}
+                            </button>
+                        </form>
+                        
+                    </td>
             </tr>
             @endforeach
+               @if (session('success'))
+   <div class="alert alert-success">
+        {{ session('success') }}
+</div>
+   @endif
         </tbody>
     </table>
 </div>
+
 @endsection

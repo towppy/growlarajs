@@ -134,7 +134,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-<<<<<<< HEAD
+
            @php $isAdmin = auth()->check() && auth()->user()->is_admin; @endphp
 <x-responsive-nav-link :href="$isAdmin ? route('shop.admin') : route('shop.index')" :active="request()->routeIs($isAdmin ? 'shop.admin' : 'shop.index')">
     🛍 Shop
@@ -147,7 +147,7 @@
     </x-responsive-nav-link>
 @endunless
 
-=======
+
             <x-responsive-nav-link :href="route('shop.index')" :active="request()->routeIs('shop.index')">
                 🛍 Shop
             </x-responsive-nav-link>
@@ -155,7 +155,7 @@
             <x-responsive-nav-link :href="route('cart.view')" :active="request()->routeIs('cart.view')">
                 🛒 Cart
             </x-responsive-nav-link>
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
+
         </div>
 
         @auth

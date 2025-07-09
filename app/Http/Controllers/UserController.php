@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     // Show all users
-    public function index()
-    {
-        $users = User::all();
-        return view('crud-admin.user-management', compact('users'));
-    }
+   public function index()
+{
+    $users = User::all();
+    return view('crud-admin.user-management', compact('users'));
+}
 
     // Show edit form for a specific user
     public function edit($id)
@@ -41,7 +41,9 @@ public function toggleStatus($id)
     $user->is_active = !$user->is_active;
     $user->save();
 
-    return redirect()->back()->with('success', 'User status updated.');
+    return back()->with('success', 'User status updated.');
 }
+
+
 }
 

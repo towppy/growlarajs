@@ -24,6 +24,12 @@
         @include('product-cards', ['products' => $products])
     </div>
 </div>
+<!-- @if ($errors->has('account'))
+    <div class="alert alert-danger">
+        {{ $errors->first('account') }}
+    </div>
+@endif -->
+
 @endsection
 
 @push('scripts')
@@ -63,19 +69,19 @@ $(document).ready(function () {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-// $(document).ready(function () {
-//     $('#product-search').on('keyup', function () {
-//         const query = $(this).val();
+$(document).ready(function () {
+    $('#product-search').on('keyup', function () {
+        const query = $(this).val();
 
-//         $.ajax({
-//             url: "{{ route('search.products') }}",
-//             type: "GET",
-//             data: { query: query },
-//             success: function (data) {
-//                 $('#product-list').html(data);
-//             }
-//         });
-//     });
+        $.ajax({
+            url: "{{ route('search.products') }}",
+            type: "GET",
+            data: { query: query },
+            success: function (data) {
+                $('#product-list').html(data);
+            }
+        });
+    });
 
     @auth
     document.querySelectorAll('form').forEach(form => {
@@ -84,6 +90,6 @@ $(document).ready(function () {
         });
     });
     @endauth
-});
+
 </script>
 @endpush

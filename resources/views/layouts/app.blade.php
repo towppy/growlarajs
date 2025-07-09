@@ -43,11 +43,10 @@
         
         @stack('scripts')
 
-<<<<<<< HEAD
+
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-=======
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
+
     </body>
 </html>
