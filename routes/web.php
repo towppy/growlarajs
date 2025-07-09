@@ -7,17 +7,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Models\Product;
 
-<<<<<<< HEAD
+
 //mga adminside
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
-
-
-
-
-=======
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
 Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/product/{id}', [ShopController::class, 'show'])->name('shop.show');
 Route::get('/search/products', [ShopController::class, 'liveSearch'])->name('search.products');
@@ -44,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-dashboard', function () {
         return redirect()->route('dashboard');
     })->name('user.dashboard');
-<<<<<<< HEAD
+
 
     //admin shop 
     Route::get('/admin/shop', [ShopController::class, 'adminIndex'])->name('shop.admin');
@@ -69,9 +63,7 @@ Route::get('/admin/transaction-management', function () {
     return view('crud-admin.transaction-management');
 })->name('transaction.management');
 
-=======
->>>>>>> d0b1198d88241160778bc1c9999100ca5d441ea5
-    
+
 });
 
 require __DIR__.'/auth.php';
